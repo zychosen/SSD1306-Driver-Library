@@ -1,1 +1,1 @@
-# SSD1306-Driver-Library
+# SSD1306 Driver Library
