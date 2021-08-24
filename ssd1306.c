@@ -8,6 +8,7 @@
 #include "i2c.h"
 #include "ssd1306.h"
 #include <string.h>
+#include "font5x8.h"
 
 static uint8_t buffer[SIZE];
 
@@ -101,7 +102,7 @@ void drawLine(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
 
 	} else if(!dx) {
 		while(y1 <= y2) {
-			draw_pixel(x1, y1, 1);
+			draw_pixel(x1, y1, WHITE);
 			y1++;
 		}
 
@@ -117,7 +118,7 @@ void drawLine(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
 		int D = 2*dy - dx;
 		int x, y = y1;
 		for(x = x1; x <= x2; x++) {
-			draw_pixel(x,y,1);
+			draw_pixel(x, y, WHITE);
 			if(D > 0) {
 				y++;
 				D -= 2*dx;
@@ -127,4 +128,26 @@ void drawLine(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
 	}
 }
 
+void drawChar(char c, uint8_t x, uint8_t y) {
+	uint8_t _char = c - 32;
+	uint8_t _y = y;
+	uint8_t i,k;
+	for(k = 0; k < FONT_WIDTH; k++) {
+		y = _y;
+		for(i = 0; i < FONT_HEIGHT - 1; i++) {
+			if((ASCII[_char][k] >> i) & 0x01) {
+				draw_pixel(x, y, WHITE);
+			}
+			y++;
+		}
+		x++;
+	}
+}
 
+void drawString(char *s, uint8_t x, uint8_t y) {
+	uint8_t j = 0;
+	while (s[j] != '\0') {
+		drawChar(s[j], x, y);
+		j++; x += FONT_WIDTH;
+	}
+}

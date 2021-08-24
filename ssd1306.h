@@ -61,7 +61,5 @@ void setCursor(uint8_t, uint8_t);
 
 /* implement */
 void drawLine(uint8_t, uint8_t, uint8_t, uint8_t);
-void drawChar();
-void drawString();
 
 #endif /* SSD1306_H_ */
