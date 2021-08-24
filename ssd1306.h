@@ -1,9 +1,18 @@
-#ifndef __SSD1306_H__
-#define __SSD1306_H__
+/*
+ * ssd1306.h
+ *
+ *  Created on: Aug 22, 2021
+ *      Author: zychosen
+ */
 
-#define BLACK 0   ///< Draw 'off' pixels
-#define WHITE 1   ///< Draw 'on' pixels
-#define INVERSE 2 ///< Invert pixels
+#ifndef SSD1306_H_
+#define SSD1306_H_
+
+#include <stdint.h>
+
+#define BLACK 0
+#define WHITE 1
+#define INVERSE 2
 
 #define WIDTH 128
 #define HEIGHT 64
@@ -39,11 +48,20 @@
 #define DEACTIVATE_SCROLL 0x2E
 #define ACTIVATE_SCROLL 0x2F
 #define SET_VERTICAL_SCROLL_AREA 0xA3
+#define SET_LCOL_START_ADDRESS 0x00
+#define SET_HCOL_START_ADDRESS 0x10
+#define SET_PAGE_START_ADDRESS 0xB0
 
-void setup(void);
+void ssd1306_setup(void);
 void update_screen(void);
 void clear_screen(void);
-void draw_pixel(unsigned char x, unsigned char y, unsigned char colour);
-void command(unsigned char cmd);
+void send_command(uint8_t);
+void draw_pixel(uint8_t, uint8_t, uint8_t);
+void setCursor(uint8_t, uint8_t);
 
-#endif
+/* implement */
+void drawLine(uint8_t, uint8_t, uint8_t, uint8_t);
+void drawChar();
+void drawString();
+
+#endif /* SSD1306_H_ */
