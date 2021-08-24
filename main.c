@@ -8,8 +8,8 @@
 
 int main(void)
 {
-	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
-	static const uint8_t address = 0x3C;
+	WDTCTL = WDTPW | WDTHOLD;	            /* stop watchdog timer */
+	static const uint8_t address = 0x3C;    /* I2C address of slave */
 	i2c_setup(address);
 	ssd1306_setup();
 	int i;

@@ -12,7 +12,6 @@
 
 #define BLACK 0
 #define WHITE 1
-#define INVERSE 2
 
 #define WIDTH 128
 #define HEIGHT 64
@@ -57,9 +56,7 @@ void update_screen(void);
 void clear_screen(void);
 void send_command(uint8_t);
 void draw_pixel(uint8_t, uint8_t, uint8_t);
-void setCursor(uint8_t, uint8_t);
-
-/* implement */
 void drawLine(uint8_t, uint8_t, uint8_t, uint8_t);
+void drawCircle(uint8_t, uint8_t, uint8_t);
 
 #endif /* SSD1306_H_ */

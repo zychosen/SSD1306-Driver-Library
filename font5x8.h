@@ -11,6 +11,7 @@
 #define FONT_WIDTH 5
 #define FONT_HEIGHT 8
 
+/* ASCII lookup table */
 static const char ASCII[96][5] = {
  {0x00, 0x00, 0x00, 0x00, 0x00} // 20  (space)
 ,{0x00, 0x00, 0x5f, 0x00, 0x00} // 21 !
@@ -110,6 +111,7 @@ static const char ASCII[96][5] = {
 ,{0x00, 0x06, 0x09, 0x09, 0x06} // 7f ?
 };
 
+/* Helper functions */
 void drawChar(char, uint8_t, uint8_t);
 void drawString(char *, uint8_t, uint8_t);
 
