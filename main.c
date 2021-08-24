@@ -1,32 +1,20 @@
-#include <msp430f5529.h>
+#include "i2c.h"
 #include "ssd1306.h"
 
-unsigned char const write_address = 0x3C;
+/**
+ * main.c
+ */
 
-void i2c_init() {
-	P3SEL |= BIT0 | BIT1;
-
-	UCB0CTL1 |= UCSWRST;
-	UCB0CTL0 = (UCMST | UCMODE_3 | UCSYNC);
-	UCB0CTL1 = (UCSSEL_2 | UCSWRST);
-	UCB0BR0 = 12;
-	UCB0BR1 = 0;
-	UCB0I2CSA = write_address;
-	UCB0CTL1 &= ~UCSWRST;
-}
-
-void main(void) {
-	WDTCTL = WDTPW | WDTHOLD;
-	i2c_init();
-	setup();
+int main(void)
+{
+	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
+	static const uint8_t address = 0x3C;
+	i2c_setup(address);
+	ssd1306_setup();
 	int i;
 	while (1) {
-		draw_pixel(64, 32, 1);
-		update_screen();
-		for (i = 30000; i > 0; i--);
-		draw_pixel(64, 32, 0);
+		drawLine(10, 20, 100, 50);
 		update_screen();
 		for (i = 30000; i > 0; i--);
 	}
 }
-
