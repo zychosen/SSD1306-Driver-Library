@@ -148,3 +148,10 @@ void drawString(char *s, uint8_t x, uint8_t y) {
 	}
 }
 
+void drawBitmap(char *p) {
+	int i;
+	for(i = 0; i < SIZE; i++) {
+		buffer[i] = *p++;
+	}
+}
+
