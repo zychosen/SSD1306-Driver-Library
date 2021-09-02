@@ -60,7 +60,6 @@ void update_screen(void) {
 
 void clear_screen(void) {
 	memset(buffer, 0, SIZE);
-	update_screen();
 }
 
 void draw_pixel(uint8_t x, uint8_t y, uint8_t colour) {
@@ -148,10 +147,17 @@ void drawString(char *s, uint8_t x, uint8_t y) {
 	}
 }
 
-void drawBitmap(char *p) {
-	int i;
-	for(i = 0; i < SIZE; i++) {
-		buffer[i] = *p++;
+void drawBitmap(uint8_t const *bitmap, uint8_t w, uint8_t h, uint8_t x, uint8_t y) {
+	int j, _x = x, byteNum = 0, x_max = w + x, y_max = y + h;
+	for(; y < y_max; y++) {
+		x = _x;
+		while (x < x_max) {
+			for(j = 0; j < 8; j++, x++) {
+				if((bitmap[byteNum] >> (8 - j - 1)) & 0x01)
+				draw_pixel(x,y,1);
+			}
+			++byteNum;
+		}
 	}
 }
 

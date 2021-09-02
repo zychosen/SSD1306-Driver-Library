@@ -58,6 +58,6 @@ void send_command(uint8_t);
 void draw_pixel(uint8_t, uint8_t, uint8_t);
 void drawLine(uint8_t, uint8_t, uint8_t, uint8_t);
 void drawCircle(uint8_t, uint8_t, uint8_t);
-void drawBitmap(char *);
+void drawBitmap(uint8_t const *, uint8_t, uint8_t, uint8_t, uint8_t);
 
 #endif /* SSD1306_H_ */
