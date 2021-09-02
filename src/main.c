@@ -20,7 +20,7 @@ int main(void)
 	ssd1306_setup();
 	int i;
 	while (1) {
-		drawBitmap(bitmap, 128, 64, 0, 0);
+		drawBitmap(bitmap, 18, 15, 20, 40);
 		update_screen();
 		for (i = 30000; i > 0; i--);
 	}
