@@ -143,7 +143,7 @@ void drawString(char *s, uint8_t x, uint8_t y) {
 	uint8_t j = 0;
 	while (s[j] != '\0') {
 		drawChar(s[j], x, y);
-		j++; x += FONT_WIDTH;           /* Increment x position after each character is printed to avoid overlap of characters */
+		j++; x += FONT_WIDTH + 1;           /* Increment x position after each character is printed to avoid overlap of characters */
 	}
 }
 
